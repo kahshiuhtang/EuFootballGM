@@ -72,6 +72,12 @@ Finances are a bit more tricky. Each team has serveral streams of income, whethe
 The goal every manger has is to win games and make money.
 
 
+## Game Simulation
+
+1) Take a query of each team's starting roster, the pressure of the game, the environment and the players health. Generate a team strength value to represent each team
+
+2) Randomly select from a set of events on what happens 
+
 ## Todo
 
 - [ ] Randomly generate players and allow for player progression

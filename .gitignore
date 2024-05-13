@@ -1,2 +1,5 @@
-node_modules
-dist
+.vscode/
+.github/
+node_modules/
+src-tauri/icons/
+src-tauri/target/
