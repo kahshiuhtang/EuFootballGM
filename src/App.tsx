@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { invoke } from "@tauri-apps/api/tauri"
 
+import { Navigation } from "./components/navigation/page"
 import { TailwindIndicator } from "./components/tailwind-indicator"
 import { ThemeProvider } from "./components/theme-provider"
 import { cn } from "./lib/utils"
-import { Navigation } from "./navigation/page"
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("")
