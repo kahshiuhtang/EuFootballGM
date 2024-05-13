@@ -35,9 +35,9 @@ Finally, to run, do
 
 ```bash
 
-npm install
+pnpm i
 
-npm run tauri dev
+pnpm tauri run dev
 
 ```
 
