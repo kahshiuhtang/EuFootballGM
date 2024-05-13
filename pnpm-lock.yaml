@@ -122,6 +122,9 @@ importers:
       date-fns:
         specifier: ^2.30.0
         version: 2.30.0
+      facejs:
+        specifier: ^1.0.1
+        version: 1.0.1
       lucide-react:
         specifier: ^0.263.1
         version: 0.263.1(react@18.2.0)
@@ -1876,6 +1879,9 @@ packages:
   execa@7.1.1:
     resolution: {integrity: sha512-wH0eMf/UXckdUYnO21+HDztteVv05rq2GXksxT4fCGeHkBhw1DROXh40wcjMcRqDOWE7iPJ4n3M7e2+YFP+76Q==}
     engines: {node: ^14.18.0 || ^16.14.0 || >=18.0.0}
+
+  facejs@1.0.1:
+    resolution: {integrity: sha512-VJx137H1OwnS2gCyC0CWKwQ8BbCEzCRJFfHewZE9XZfNKcgpiq8GqbAJmT7fllJvcb7F4HSPB/sHchfPNpqu1A==}
 
   fast-equals@5.0.1:
     resolution: {integrity: sha512-WF1Wi8PwwSY7/6Kx0vKXtw8RwuSGoM1bvDaJbu7MxDlR1vovZjIAKrnzyrThgAjm6JDTu0fVgWXDlMGspodfoQ==}
@@ -4756,6 +4762,8 @@ snapshots:
       onetime: 6.0.0
       signal-exit: 3.0.7
       strip-final-newline: 3.0.0
+
+  facejs@1.0.1: {}
 
   fast-equals@5.0.1: {}
 
