@@ -1,3 +1,35 @@
+pub fn generate_goalie() -> Player{
+    
+}
+
+pub fn generate_midfielder(){
+
+}
+
+pub fn generate_attacker(){
+
+}
+
+pub fn generate_defender(){
+
+}
+
+pub fn generate_physical(position: String){
+
+}
+pub fn generate_mental(position: String){
+    
+}
+pub fn generate_technique(position: String){
+    
+}
+pub fn generate_hidden(position: String){
+    
+}
+pub fn generate_goalkeeping(position: String){
+    
+}
+
 pub struct Player {
     physical: PhysicalTraits,
     mental: MentalTraits,
