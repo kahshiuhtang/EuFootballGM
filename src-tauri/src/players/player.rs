@@ -19,19 +19,44 @@ const UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL:i64 = 8;
 const UPPER_BOUND_FLOOR_ADVANCED_SKILL:i64 = 10;
 
 
-pub fn generate_goalie(){
+pub fn generate_goalie() -> Player{
+    Player{
+        physical: generate_physical(Position::GOALIE),
+        mental: generate_mental(Position::GOALIE),
+        technique: generate_technique(Position::GOALIE),
+        hidden: generate_hidden(Position::GOALIE),
+        goalkeeping: generate_goalkeeping(Position::GOALIE),
+    }
 }
 
-pub fn generate_midfielder(){
-
+pub fn generate_midfielder() -> Player{
+    Player{
+        physical: generate_physical(Position::MIDFIELDER),
+        mental: generate_mental(Position::MIDFIELDER),
+        technique: generate_technique(Position::MIDFIELDER),
+        hidden: generate_hidden(Position::MIDFIELDER),
+        goalkeeping: generate_goalkeeping(Position::MIDFIELDER),
+    }
 }
 
-pub fn generate_attacker(){
-
+pub fn generate_attacker() -> Player{
+    Player{
+        physical: generate_physical(Position::ATTACKER),
+        mental: generate_mental(Position::ATTACKER),
+        technique: generate_technique(Position::ATTACKER),
+        hidden: generate_hidden(Position::ATTACKER),
+        goalkeeping: generate_goalkeeping(Position::ATTACKER),
+    }
 }
 
-pub fn generate_defender(){
-
+pub fn generate_defender() -> Player{
+    Player{
+        physical: generate_physical(Position::DEFENDER),
+        mental: generate_mental(Position::DEFENDER),
+        technique: generate_technique(Position::DEFENDER),
+        hidden: generate_hidden(Position::DEFENDER),
+        goalkeeping: generate_goalkeeping(Position::DEFENDER),
+    }
 }
 
 pub fn generate_physical(position: Position) -> PhysicalTraits{
