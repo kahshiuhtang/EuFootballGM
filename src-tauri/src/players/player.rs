@@ -1,5 +1,25 @@
-pub fn generate_goalie() -> Player{
-    
+extern crate rand;
+use rand::Rng;
+
+pub enum Position {
+    GOALIE,
+    DEFENDER,
+    MIDFIELDER,
+    ATTACKER,
+}
+
+const LOWER_BOUND_FLOOR_POOR_SKILL:i64 = 1;
+const LOWER_BOUND_FLOOR_BASIC_SKILL:i64 = 3;
+const LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL:i64 = 5;
+const LOWER_BOUND_FLOOR_ADVANCED_SKILL:i64 = 7;
+
+const UPPER_BOUND_FLOOR_POOR_SKILL:i64 = 4;
+const UPPER_BOUND_FLOOR_BASIC_SKILL:i64 = 6;
+const UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL:i64 = 8;
+const UPPER_BOUND_FLOOR_ADVANCED_SKILL:i64 = 10;
+
+
+pub fn generate_goalie(){
 }
 
 pub fn generate_midfielder(){
@@ -14,19 +34,270 @@ pub fn generate_defender(){
 
 }
 
-pub fn generate_physical(position: String){
+pub fn generate_physical(position: Position) -> PhysicalTraits{
+    let mut rng = rand::thread_rng();
+    match position {
+        Position::GOALIE => return PhysicalTraits{
+            acceleration: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            agility: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            jump_reach: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            natural_fitness: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            pace: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            stamina: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            strength: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+        },
+        Position::DEFENDER => PhysicalTraits{
+            acceleration: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            agility:rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            jump_reach: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            natural_fitness: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            pace: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            stamina: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            strength: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+        },
+        Position::MIDFIELDER => PhysicalTraits{
+            acceleration: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            agility: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            jump_reach: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            natural_fitness: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            pace: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            stamina: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            strength: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+        },
+        Position::ATTACKER => PhysicalTraits{
+            acceleration: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            agility: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            jump_reach: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            natural_fitness:rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            pace: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            stamina: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            strength: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+        },
+    };
+    return PhysicalTraits{
+        acceleration: 0,
+        agility: 0,
+        jump_reach: 0,
+        natural_fitness: 0,
+        pace:0,
+        stamina: 0,
+        strength: 0,
+    }
 
 }
-pub fn generate_mental(position: String){
+pub fn generate_mental(position: Position) -> MentalTraits{
+    let mut rng = rand::thread_rng();
+    match position {
+        Position::GOALIE => MentalTraits{
+            aggression: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            bravery: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            composure: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            concentration: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            decisions: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            determination: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            flair: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            leadership: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            off_ball: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            positioning: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            teamwork: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            vision: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            work_rate: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+        },
+        Position::DEFENDER =>  MentalTraits{
+            aggression: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            bravery: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            composure: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            concentration: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            decisions: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            determination: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            flair: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            leadership: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            off_ball: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            positioning: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            teamwork: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            vision: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            work_rate: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+        },
+        Position::MIDFIELDER =>  MentalTraits{
+            aggression: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            bravery: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            composure: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            concentration: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            decisions: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            determination:rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            flair: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            leadership: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            off_ball: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            positioning: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            teamwork: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            vision: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            work_rate: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+        },
+        Position::ATTACKER =>  MentalTraits{
+            aggression: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            bravery: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            composure: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            concentration:rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            decisions: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            determination: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            flair: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            leadership: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            off_ball: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            positioning: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            teamwork: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            vision: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            work_rate:rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+        }, 
+    }
+}
+
+pub fn generate_technique(position: Position) -> TechnicalTraits{
+    let mut rng = rand::thread_rng();
+    match position {
+        Position::GOALIE => TechnicalTraits{
+            dribbling: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            first_touch: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            free_kick_taking: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            heading: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            long_shots:rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            long_throws:rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            marking: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            passing: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            penalty_taking: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            tackling: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            technique: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+        },
+        Position::DEFENDER => TechnicalTraits{
+            dribbling: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            first_touch: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            free_kick_taking: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            heading: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            long_shots: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            long_throws: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            marking: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            passing: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            penalty_taking: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            tackling: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            technique: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+        },
+        Position::MIDFIELDER => TechnicalTraits{
+            dribbling: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            first_touch:rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            free_kick_taking: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            heading: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            long_shots: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            long_throws: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            marking: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            passing: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            penalty_taking: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            tackling:rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            technique:rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+        },
+        Position::ATTACKER => TechnicalTraits{
+            dribbling: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            first_touch: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            free_kick_taking: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            heading: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            long_shots: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            long_throws: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            marking: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            passing: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            penalty_taking: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            tackling: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            technique: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+        },
+    }
+}
+pub fn generate_hidden(position: Position) -> HiddenTraits{
+    let mut rng = rand::thread_rng();
+    match position {
+        Position::GOALIE => HiddenTraits{
+            adaptability: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            consistency: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            dirtiniess: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            injury_proneness: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            versatility: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+        },
+        Position::DEFENDER => HiddenTraits{
+            adaptability: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            consistency: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            dirtiniess: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            injury_proneness: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            versatility: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+        },
+        Position::MIDFIELDER => HiddenTraits{
+            adaptability: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            consistency: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+            dirtiniess: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            injury_proneness: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            versatility: rng.gen_range(LOWER_BOUND_FLOOR_ADVANCED_SKILL..UPPER_BOUND_FLOOR_ADVANCED_SKILL),
+        },
+        Position::ATTACKER => HiddenTraits{
+            adaptability:rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            consistency: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            dirtiniess: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            injury_proneness: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            versatility: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+        },
+    }
     
 }
-pub fn generate_technique(position: String){
-    
-}
-pub fn generate_hidden(position: String){
-    
-}
-pub fn generate_goalkeeping(position: String){
+pub fn generate_goalkeeping(position: Position) -> GoalKeepingTraits{
+    let mut rng = rand::thread_rng();
+    match position {
+        Position::GOALIE =>  GoalKeepingTraits{
+            aerial_ability: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            command_of_area: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            communication: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            eccentricity: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            handling: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            kicking: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            one_on_one: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            reflexes: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            rushing_out: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            tendency_to_punch: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            throwing: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+        },
+        Position::DEFENDER =>  GoalKeepingTraits{
+            aerial_ability: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            command_of_area: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            communication: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            eccentricity: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            handling: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            kicking: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            one_on_one: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            reflexes: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            rushing_out: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            tendency_to_punch: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            throwing: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+        },
+        Position::MIDFIELDER =>  GoalKeepingTraits{
+            aerial_ability: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            command_of_area: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            communication: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            eccentricity: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            handling: rng.gen_range(LOWER_BOUND_FLOOR_INTERMEDIATE_SKILL..UPPER_BOUND_FLOOR_INTERMEDIATE_SKILL),
+            kicking: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            one_on_one: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            reflexes: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            rushing_out: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            tendency_to_punch: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            throwing: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+        },
+        Position::ATTACKER => GoalKeepingTraits{
+            aerial_ability: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            command_of_area: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            communication: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            eccentricity: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            handling: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            kicking: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            one_on_one: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            reflexes: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+            rushing_out: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            tendency_to_punch: rng.gen_range(LOWER_BOUND_FLOOR_POOR_SKILL..UPPER_BOUND_FLOOR_POOR_SKILL),
+            throwing: rng.gen_range(LOWER_BOUND_FLOOR_BASIC_SKILL..UPPER_BOUND_FLOOR_BASIC_SKILL),
+        },
+    }
     
 }
 
