@@ -5,6 +5,7 @@
 pub mod simulation;
 pub mod players;
 pub mod leagues;
+pub mod teams;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
