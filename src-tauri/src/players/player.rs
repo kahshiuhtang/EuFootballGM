@@ -1,5 +1,3 @@
-
-
 use rand::Rng;
 
 use crate::teams::academy::{get_academy_impact, Academy};
