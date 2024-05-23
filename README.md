@@ -29,6 +29,8 @@ sudo apt install libwebkit2gtk-4.0-dev \
     libayatana-appindicator3-dev \
     librsvg2-dev
 
+sudo apt-get install javascriptcoregtk-4.1 libsoup-3.0 webkit2gtk-4.1 -y
+
 ```
 
 Finally, to run, do 
@@ -37,7 +39,7 @@ Finally, to run, do
 
 pnpm i
 
-pnpm tauri run dev
+pnpm run tauri dev
 
 ```
 
